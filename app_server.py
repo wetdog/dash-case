@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 
 
 # Read data
-engine = create_engine('postgresql://postgres:week4data@strategy-week4.cgdnfokybmc9.us-east-2.rds.amazonaws.com/strategy')
+engine = create_engine('postgresql://postgres:week4data@strategy-week4.cgdnfokybmc9.us-east-2.rds.amazonaws.com/postgres')
 df = pd.read_sql("SELECT * from trades", engine.connect(), parse_dates=('Entry time',))
 #df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 # add year month Column
@@ -23,7 +23,7 @@ app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/uditagarwal/
 app.layout = html.Div(children=[
     html.Div(
             children=[
-                html.H2(children="Bitcoin Leveraged Trading Backtest Analysis", className='h1-title'),
+                html.H2(children="Bitcoin Leveraged Trading Backtest Analysis by Jose", className='h1-title'),
             ],
             className='study-browser-banner row'
     ),
@@ -371,4 +371,4 @@ def update_line_price(exchange, leverage, start_date, end_date):
 
 # Run server
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True,host= '0.0.0.0')
